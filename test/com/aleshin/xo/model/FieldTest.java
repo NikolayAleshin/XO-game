@@ -28,6 +28,18 @@ class FieldTest {
     }
 
     @Test
+    void testSetFigureWhenAlreadyOccupied() throws InvalidPointException, AlreadyOccupiedException {
+        final Field field = new Field();
+        final Point point = new Point(0, 0);
+        final Figure figure = Figure.O;
+        field.setFigure(point, figure);
+        try {
+            field.setFigure(point, figure);
+            fail();
+        } catch (final AlreadyOccupiedException e) {}
+    }
+
+    @Test
     void testGetFigureWhenFigureIsNotSet() throws InvalidPointException {
         final Field field = new Field();
         final Point point = new Point(0, 0);
