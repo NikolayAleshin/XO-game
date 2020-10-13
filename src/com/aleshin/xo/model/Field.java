@@ -1,19 +1,22 @@
 package com.aleshin.xo.model;
 
 import com.aleshin.xo.model.exceptions.InvalidPointException;
-import com.aleshin.xo.model.exceptions.AlreadyOccupiedException;
 
 import java.awt.*;
 
 public class Field {
-    private static final int FIELD_SIZE = 3;
+    private final int fieldSize;
     private static final int MIN_FIELD_SIZE = 0;
-    private static final int MAX_FIELD_SIZE = FIELD_SIZE;
 
-    private final Figure[][] field = new Figure[FIELD_SIZE][FIELD_SIZE];
+    private final Figure[][] field;
+
+    public Field(final int fileSize) {
+        this.fieldSize = fileSize;
+        field = new Figure[fieldSize][fieldSize];
+    }
 
     public int getFieldSize() {
-        return FIELD_SIZE;
+        return fieldSize;
     }
 
     public Figure getFigure(final Point point) throws InvalidPointException {
@@ -31,9 +34,9 @@ public class Field {
         field[point.x][point.y] = figure;
     }
     private boolean checkPoint(final Point point) {
-        return checkCoordinate(point.x) && checkCoordinate(point.y);
+        return checkCoordinate(point.x, field.length) && checkCoordinate(point.y, field[point.x].length);
     }
-    private boolean checkCoordinate(final int coordinate) {
-        return coordinate >= MIN_FIELD_SIZE && coordinate < MAX_FIELD_SIZE;
+    private boolean checkCoordinate(final int coordinate, final int maxCoordinate) {
+        return coordinate >= MIN_FIELD_SIZE && coordinate < maxCoordinate;
     }
 }

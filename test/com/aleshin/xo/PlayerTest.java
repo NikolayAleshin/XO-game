@@ -1,5 +1,7 @@
-package com.aleshin.xo.model;
+package com.aleshin.xo;
 
+import com.aleshin.xo.model.Figure;
+import com.aleshin.xo.model.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

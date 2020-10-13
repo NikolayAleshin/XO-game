@@ -40,12 +40,14 @@ public class WinnerContoller {
 
         try {
             currentFigure = field.getFigure(currentPoint);
-            nextFigure = field.getFigure(currentPoint);
+            if (currentFigure == null) return false;
+
+            nextFigure = field.getFigure(pointNext);
+
         } catch (InvalidPointException e) {
             return true;
         }
 
-        if (currentFigure == null) return false;
 
         if (currentFigure != nextFigure) return false;
 
